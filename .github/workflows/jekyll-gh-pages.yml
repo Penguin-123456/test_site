@@ -26,26 +26,26 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: チェックアウト
         uses: actions/checkout@v4
-      - name: Setup Pages
+      - name: サイトをセットアップ
         uses: actions/configure-pages@v4
-      - name: Build with Jekyll
+      - name: Jekyllでビルド
         uses: actions/jekyll-build-pages@v1
         with:
           source: ./
           destination: ./_site
-      - name: Upload artifact
+      - name: 加工したものをアップロード
         uses: actions/upload-pages-artifact@v3
 
   # Deployment job
   deploy:
     environment:
-      name: githubpagesSite
+      name: サイトを公開
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     needs: build
     steps:
-      - name: Deploy to GitHub Pages
+      - name: サイトをデプロイ
         id: deployment
         uses: actions/deploy-pages@v4
